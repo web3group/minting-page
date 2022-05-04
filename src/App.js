@@ -1,14 +1,14 @@
 import './styles/App.css';
 import twitterLogo from './assets/twitter-logo.svg';
 import React, { useCallback, useEffect, useState } from "react";
-import pokemonImg from './assets/pokemon.jpeg';
+import pokemonImg from './assets/WhaleCollective.png';
 import { ethers } from 'ethers';
 import contract from './contracts/PokemonNFT.json'
 import { Fragment } from 'react/cjs/react.production.min';
 import { AlchemyProvider } from "@ethersproject/providers";
 
 // Constants
-const TWITTER_HANDLE = 'Rounak_Banik';
+const TWITTER_HANDLE = 'whale_xyz';
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 const OPENSEA_LINK = 'https://testnets.opensea.io/collection/buildspace-pokemon';
 const contractAddress = "0xA72D2F4172ad22Adc5E0cb742230c32afDc3624b";
@@ -202,12 +202,12 @@ const App = () => {
 
         <div className="container">
           <div className="header-container">
-            <p className="header gradient-text"><a href={OPENSEA_LINK} target='_blank' rel='noreferrer'>Grand Escape Members Club</a></p>
+            <p className="header gradient-text"><a href={OPENSEA_LINK} target='_blank' rel='noreferrer'>Whale Collective</a></p>
             <div className='banner-img'>
               <img src={pokemonImg} alt="Groudon and Kyogre" />
             </div>
             <p className="sub-text">
-              Mint your own Grand Escape Members Club NFT. <br />Catch a shiny and get a chance to win 0.01 ETH!
+              Mint your own Whale Collective NFT. <br />After full Minting we will get Proof Pass added to our Discord !
             </p>
             {currentAccount && mineStatus !== 'mining' && renderMintUI()}
             {!currentAccount && !mineStatus && renderNotConnectedContainer()}
@@ -229,18 +229,7 @@ const App = () => {
             </div>
           </div>
 
-          <div className='shiny-hunter-container'>
-            <h2>Grand Escapers Hall of Fame</h2>
-            {hunters.length === 0 && <p>No shinies have been hunted yet.</p>}
-            {hunters.map(hunter => {
-              return (
-                <div className='hunter'>
-                  <p className='hspecies'>{hunter.species}</p>
-                  <p className='haddress'>{hunter.winner}</p>
-                </div>
-              )
-            })}
-          </div>
+          
 
 
           <div className="footer-container">
@@ -250,7 +239,7 @@ const App = () => {
               href={TWITTER_LINK}
               target="_blank"
               rel="noreferrer"
-            >{`join us on  @gemcnft`}</a>
+            >{`join us on  @whale_xyz`}</a>
           </div>
         </div>
       </div>
