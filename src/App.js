@@ -20,7 +20,7 @@ const App = () => {
   const [metamaskError, setMetamaskError] = useState(null);
   const [mineStatus, setMineStatus] = useState(null);
   const [tokenId, setTokenId] = useState(null);
-
+  const [hunters, setHunters] = useState([]);
 
   const checkWalletIsConnected = async () => {
     const { ethereum } = window;
@@ -105,7 +105,34 @@ const App = () => {
     }
   }
 
-  
+  const getShinyHunters = useCallback(async () => {
+
+    // Use user account if it is connected to Rinkeby, else use default Alchemy Provider
+    let signer;
+
+    if (currentAccount) {
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      signer = provider.getSigner();
+    }
+    else {
+      signer = new AlchemyProvider('rinkeby')
+    }
+
+    const nftContract = new ethers.Contract(contractAddress, abi, signer);
+
+    let shinyHunters = await nftContract.getShinyHunters();
+
+    let cleanHunters = shinyHunters.map(hunter => {
+      return {
+        winner: hunter.winner,
+        species: hunter.pokemon,
+      }
+    })
+
+    cleanHunters.reverse();
+    console.log(cleanHunters);
+    setHunters(cleanHunters);
+  }, [currentAccount]);
 
   const mintNFT = async () => {
     try {
@@ -141,7 +168,7 @@ const App = () => {
 
   useEffect(() => {
     checkWalletIsConnected();
-   
+    getShinyHunters();
 
     if (currentAccount) {
       setupEventListener();
@@ -149,7 +176,7 @@ const App = () => {
     if (window.ethereum) {
       window.ethereum.on('chainChanged', (_chainId) => window.location.reload());
     }
-  }, [currentAccount])
+  }, [currentAccount, getShinyHunters])
 
   // Render Methods
   const renderNotConnectedContainer = () => (
@@ -202,7 +229,18 @@ const App = () => {
             </div>
           </div>
 
-          
+          <div className='shiny-hunter-container'>
+            <h2>Get instant access to Whale Chats</h2>
+            {hunters.length === 0 && <p>BAYC, Azuki, Coolcats and soon Proof + many more.</p>}
+            {hunters.map(hunter => {
+              return (
+                <div className='hunter'>
+                  <p className='hspecies'>{hunter.species}</p>
+                  <p className='haddress'>{hunter.winner}</p>
+                </div>
+              )
+            })}
+          </div>
 
 
           <div className="footer-container">
