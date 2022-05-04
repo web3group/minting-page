@@ -11,7 +11,7 @@ import { AlchemyProvider } from "@ethersproject/providers";
 const TWITTER_HANDLE = 'whale_xyz';
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 const OPENSEA_LINK = 'https://testnets.opensea.io/collection/buildspace-pokemon';
-const contractAddress = "0xA72D2F4172ad22Adc5E0cb742230c32afDc3624b";
+const contractAddress = "0x8265e4FC9dE16e9CaA40631990484953638Ab599";
 const abi = contract.abi;
 
 const App = () => {
