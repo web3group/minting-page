@@ -229,7 +229,18 @@ const App = () => {
             </div>
           </div>
 
-          
+          <div className='shiny-hunter-container'>
+            <h2>Grand Escapers Hall of Fame</h2>
+            {hunters.length === 0 && <p>No shinies have been hunted yet.</p>}
+            {hunters.map(hunter => {
+              return (
+                <div className='hunter'>
+                  <p className='hspecies'>{hunter.species}</p>
+                  <p className='haddress'>{hunter.winner}</p>
+                </div>
+              )
+            })}
+          </div>
 
 
           <div className="footer-container">
