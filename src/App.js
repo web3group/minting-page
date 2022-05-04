@@ -10,7 +10,7 @@ import { AlchemyProvider } from "@ethersproject/providers";
 // Constants
 const TWITTER_HANDLE = 'whale_xyz';
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
-const OPENSEA_LINK = 'https://testnets.opensea.io/collection/buildspace-pokemon';
+const OPENSEA_LINK = 'https://testnets.opensea.io/collection/whale-collective';
 const contractAddress = "0x8265e4FC9dE16e9CaA40631990484953638Ab599";
 const abi = contract.abi;
 
